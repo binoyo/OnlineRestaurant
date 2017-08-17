@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Items Available</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="List the items" />
+<meta name="author" content="Bino Ihsan" />
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<!-- Custom CSS -->
+<link href="css/theme.css" rel="stylesheet" />
+<!-- Custom Fonts -->
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+<link href="../../static/css/spring-core.css"
+	th:href="@{css/spring-core.css}" rel="stylesheet" media="screen" />
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+		<i class="fa fa-bars"></i>
+		</button>
+		<a class="navbar-brand page-scroll" href="list.html">
+		Falaful Restaurant </a>
+	</div>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+		<ul class="nav navbar-nav">
+			<li>
+			<a href="list.html">Home</a>
+			</li>
+			<li>
+			<a href="list.html">Login</a>
+			</li>
+			<li>
+			<a href="list.html">Login</a>
+			</li>
+			<li>
+			<a href="contact.html">Hire me</a>
+			</li>
+		</ul>
+	</div>
+	<!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+<!-- Intro Header -->
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h1 class="brand-heading">FALAFUL RESTAURANT</h1>
+				<p class="intro-text">
+					Welcome to Hotel Falafal. View the list of items available.
+				</p>
+				<a href="#about" class="btn btn-circle page-scroll">
+				<i class="fa fa-angle-double-down animated"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+</header>
+
+	<div class="container">
+		<div th:if="${not #lists.isEmpty(items)}">
+			<h2>Item List</h2>
+			<table class="table table-striped">
+				<tr>
+					<th>Id</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Image URL</th>
+					<th>List</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				<tr th:each="item : ${items}">
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.description}"></td>
+					<td th:text="${item.price}"></td>
+					<td th:text="${item.imageUrl}"></td>
+					<td><a th:href="${'/item/show/' + item.id}">View</a></td>
+					<td><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
+					<td><a th:href="${'/item/delete/' + item.id}">Delete</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<a href="/item/new">New Item</a>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
